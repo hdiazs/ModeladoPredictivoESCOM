@@ -1,10 +1,11 @@
 # Inicio del script de regresión lineal simple
 
-# Si no estan instalados, instalar  install.packages(c("readr","data.table","readxl","openxlsx","tidyverse","broom","car","ggplot2","caret"))
+# Si no estan instalados, instalar  install.packages(c("readr","data.table","readxl","openxlsx","tidyverse","broom","car","ggplot2","lattice","caret"))
 
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(lattice)
 library(caret)
 
 # Lectura de conjunto de datos (dataset)
@@ -112,8 +113,17 @@ ggplot(train_data, aes(x = x, y = y)) +
        plot = last_plot(),
        width = 10, height = 10, units = "in", dpi = 300)
 
-# ANOVA
-anova(model)
+sink("./reports/reportlr.txt")
+
+cat("=== Reporte de regresión lineal ==\n\n")
 
 # Resumen
 summary(model)
+# ANOVA
+anova(model)
+
+cat("\n Coeficientes: \n")
+
+print(coef(model))
+
+sink()
