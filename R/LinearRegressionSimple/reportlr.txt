@@ -1,0 +1,86 @@
+=== Descripción general del conjunto de datos ===
+
+Número de observaciones: 20
+Número de variables: 2
+
+Estructura de las variables:
+spc_tbl_ [20 × 2] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ y: num [1:20] 2159 1678 2316 2061 2208 ...
+ $ x: num [1:20] 15.5 23.8 8 17 5.5 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   `Shear Strength, yi (psi)` = col_double(),
+  ..   `Age of Propellant, xi (weeks)` = col_double()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+NULL
+
+Resumen estadístico de las variables numéricas:
+       y              x         
+ Min.   :1678   Min.   : 2.000  
+ 1st Qu.:1783   1st Qu.: 7.125  
+ Median :2183   Median :12.750  
+ Mean   :2131   Mean   :13.363  
+ 3rd Qu.:2342   3rd Qu.:19.625  
+ Max.   :2654   Max.   :25.000  
+
+=== Fin de descripción general ===
+
+=== Reporte de regresión lineal de entrenamiento ===
+
+Fecha: 2025-10-04 20:32:15 
+
+== Resumen del modelo (summary) ==
+
+Call:
+lm(formula = y ~ x, data = train_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-220.02  -32.84   19.71   69.47  106.55 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  2638.97      49.90   52.89  < 2e-16 ***
+x             -38.45       3.17  -12.13 8.15e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 99.99 on 14 degrees of freedom
+Multiple R-squared:  0.9131,	Adjusted R-squared:  0.9069 
+F-statistic: 147.1 on 1 and 14 DF,  p-value: 8.151e-09
+
+
+== ANOVA ==
+Analysis of Variance Table
+
+Response: y
+          Df  Sum Sq Mean Sq F value    Pr(>F)    
+x          1 1470839 1470839  147.12 8.151e-09 ***
+Residuals 14  139967    9998                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+== Coeficientes (broom::tidy) ==
+# A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+1 (Intercept)   2639.      49.9       52.9 1.60e-17
+2 x              -38.4      3.17     -12.1 8.15e- 9
+
+== Métricas generales ==
+# A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic       p.value    df logLik   AIC   BIC
+      <dbl>         <dbl> <dbl>     <dbl>         <dbl> <dbl>  <dbl> <dbl> <dbl>
+1     0.913         0.907 100.0      147. 0.00000000815     1  -95.3  197.  199.
+# ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+
+== Métricas en conjunto de prueba ==
+RMSE (test): 84.97352
+MAE  (test): 78.20188
+R2   (test): 0.96398
+
+Archivos generados:
+ - Procesado CSV: ./data/processed/LinearRegressionSimple_processed.csv
+ - Plots: ./plots/*.png
+ - Modelo guardado: ./reports/linear_model_train.rds
